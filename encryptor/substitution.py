@@ -1,6 +1,5 @@
-import string
-import random
-from collections import Counter
+# -*- coding: utf-8 -*-
+from collections import Counter, OrderedDict
 from encryptor import Encryptor
 
 
@@ -8,10 +7,7 @@ class Substitution(Encryptor):
 
     def __init__(self, word):
         super(Substitution, self).__init__(word)
-        # self.ciphr = [random.choice(string.ascii_lowercase + string.digits) for k in range(len(self.alphabet))]
-        self.ciphr = list('9fvawbcprd4m5t6lzs32ojkgu')
-        print len(self.ciphr)
-        print len(set(self.ciphr))
+        self.ciphr = list('йцукенгшщґзхїфівапролджєячсмитьбю'.decode('utf-8'))
 
     def _encrypt(self):
         return ''.join([self.ciphr[self.alphabet.index(symb)] for symb in self.word])
@@ -21,4 +17,9 @@ class Substitution(Encryptor):
 
     def frequency_analysis(self):
         counter = Counter(list(self.word))
-        print counter
+        coun = OrderedDict(counter)
+        frequency = list('оанвиіетклрсудмпбгзяєжїйхцчшщьюфґ'.decode('utf-8'))
+        for key, freq in zip(coun, frequency):
+            new = self.word.replace(key, freq)
+            self.word = new
+        return self.word
