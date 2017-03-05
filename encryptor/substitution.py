@@ -16,10 +16,23 @@ class Substitution(Encryptor):
         return ''.join([self.alphabet[self.ciphr.index(symb)] for symb in self.word])
 
     def frequency_analysis(self):
+        new_word = ['' for i in range(len(self.word))]
+        self.ciphr = list('оанвиіетклрсудмпбгзяєжїйхцчшщьюфґ'.decode('utf-8'))
         counter = Counter(list(self.word))
-        coun = OrderedDict(counter)
-        frequency = list('оанвиіетклрсудмпбгзяєжїйхцчшщьюфґ'.decode('utf-8'))
-        for key, freq in zip(coun, frequency):
-            new = self.word.replace(key, freq)
-            self.word = new
-        return self.word
+        coun = OrderedDict(reversed(sorted(counter.items(), key=lambda x: x[1])))
+        self.alphabet = [w for w in coun]
+        return self._encrypt()
+
+    @staticmethod
+    def repl(word, a, b):
+        a = a.decode('utf-8')
+        b = b.decode('utf-8')
+        word = list(word)
+        # new_word = ['' for i in range(len(self.word))]
+        for i in range(len(word)):
+            if word[i] == a:
+                word[i] = b
+            elif word[i] == b:
+                word[i] = a
+        return ''.join(word) 
+ 

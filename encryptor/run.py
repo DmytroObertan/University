@@ -38,7 +38,21 @@ def run():
         elif choise == '5':
             word = raw_input('Input word ').strip()
             subs = Substitution(word)
-            print subs.frequency_analysis()
+            new = subs.frequency_analysis()
+            print new
+            while True:
+                choise = \
+                            raw_input('''What do you want to do?
+                        1.Replace symbols
+                        2.Exit
+                        ''')
+                if choise == '1':
+                    a = raw_input('What to replace?')
+                    b = raw_input('With what to replace?')
+                    new = subs.repl(new, a, b)
+                    print new
+                elif choise == '2':
+                    break
         else:
             print 'Make a right choise'
 
