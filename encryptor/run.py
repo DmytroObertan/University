@@ -52,10 +52,10 @@ def run():
             word = raw_input('Input word ').strip()
             subs = Substitution(word)
             new = subs.frequency_analysis()
-            print new
+            print 'RESULT = ' + new
             while True:
                 choise = \
-                            raw_input('''What do you want to do?
+                    raw_input('''What do you want to do?
                         1.Replace symbols
                         2.Exit
                         ''')
@@ -63,7 +63,7 @@ def run():
                     a = raw_input('What to replace?')
                     b = raw_input('With what to replace?')
                     new = subs.repl(new, a, b)
-                    print new
+                    print 'RESULT = ' + new
                 elif choise == '2':
                     break
         else:
