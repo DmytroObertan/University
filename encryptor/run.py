@@ -1,5 +1,6 @@
 from caesar import Caesar
 from substitution import Substitution
+from vigener import Vigener
 
 
 def run():
@@ -13,10 +14,22 @@ def run():
         3.Encrypt with subsitution
         4.Decrypt with subsitution
         5.Try to hack the substitution method
-        6.Exit
+        6.Vigener encrypt
+        7.Vigener decrypt
+        8.Exit
         ''')
-        if choise == '6':
+        if choise == '8':
             b = False
+        elif choise == '6':
+            word = raw_input('Input word ').strip()
+            key = raw_input('Input key ')
+            vig = Vigener(word, key)
+            print 'ENCRYPTED= ' + vig._encrypt()
+        elif choise == '7':
+            word = raw_input('Input word ').strip()
+            key = raw_input('Input key ')
+            vig = Vigener(word, key)
+            print 'DECRYPTED= ' + vig._decrypt()
         elif choise == '1':
             word = raw_input('Input word ').strip()
             key = int(raw_input('Input key '))
