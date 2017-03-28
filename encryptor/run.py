@@ -1,6 +1,7 @@
 from caesar import Caesar
 from substitution import Substitution
 from vigener import Vigener
+from diffi_helmann import DiffiHellmann
 
 
 def run():
@@ -16,9 +17,10 @@ def run():
         5.Try to hack the substitution method
         6.Vigener encrypt
         7.Vigener decrypt
-        8.Exit
+        8. Diffi-Helmann keys
+        9.Exit
         ''')
-        if choise == '8':
+        if choise == '9':
             b = False
         elif choise == '6':
             word = raw_input('Input word ').strip()
@@ -66,6 +68,14 @@ def run():
                     print 'RESULT = ' + new
                 elif choise == '2':
                     break
+        elif choise == '8':
+            a = int(raw_input('Secret value of first '))
+            g = int(raw_input('Value of g '))
+            p = int(raw_input('Value of p '))
+            b = int(raw_input('Secret value of second '))
+            diffi = DiffiHellmann(a, g, p, b)
+            print 'Checking if keys is the same. It may take some time '
+            print  str(diffi._get_keys())
         else:
             print 'Make a right choise'
 
